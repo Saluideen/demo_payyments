@@ -1,0 +1,65 @@
+
+
+{% block head_script_tags %}
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+{% endblock %}
+
+{% block body %}
+
+<div>
+    <button id="buy-button" class="button is-medium is-outlined is-link mt-5">Buy</button>
+</div>
+
+
+<script>
+    const buyButton = document.getElementById("buy-button")
+    
+        const options = await getRazorpayOrderOptions()
+        const razorpayOrder = createRazorpayOrder(options)
+        razorpayOrder.open()
+
+        e.preventDefault()
+    
+
+    async function getRazorpayOrderOptions() {
+        const headers = {
+            Accept: 'application/json',
+            'Content-Type': 'application/json; charset=utf-8',
+            'X-Frappe-CSRF-Token': '{{ csrf_token }}'
+        }
+
+        const response = await fetch("/api/method/demo_payyments.www.api.create_order", {
+            method: 'POST',
+            body: JSON.stringify({
+                name: docname
+            }),
+            headers
+        })
+
+        if (response.ok) {
+            const orderData = (await response.json()).message // frappe wraps the response inside "message" key
+
+            const options = {
+                "key": orderData.key_id,
+                "order_id": orderData.order_id,
+                "handler": (res) => {
+                    window.location = "/store/success";
+                }
+            }
+
+            return options
+        } else {
+            // EXERCISE: Better handling 
+            alert("Something went wrong")
+            throw Error("")
+        }
+    }
+
+    function createRazorpayOrder(options) {
+        const razorpayOrder = new Razorpay(options)
+        return razorpayOrder
+    }
+</script>
+
+{% endblock %}

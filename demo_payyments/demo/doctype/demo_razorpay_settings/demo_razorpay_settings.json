@@ -1,0 +1,53 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2024-03-18 11:27:13.652893",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "key_id",
+  "column_break_gq1jt",
+  "key_secret"
+ ],
+ "fields": [
+  {
+   "fieldname": "key_id",
+   "fieldtype": "Data",
+   "label": "Key Id"
+  },
+  {
+   "fieldname": "column_break_gq1jt",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "key_secret",
+   "fieldtype": "Password",
+   "label": "Key secret"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "issingle": 1,
+ "links": [],
+ "modified": "2024-03-18 11:28:12.436671",
+ "modified_by": "Administrator",
+ "module": "demo",
+ "name": "demo Razorpay Settings",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
